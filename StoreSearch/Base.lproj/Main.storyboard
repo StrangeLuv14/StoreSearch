@@ -15,8 +15,39 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7TC-9x-c12">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="Jb4-VU-bIx"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="fcI-nP-jGW"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" placeholder="App name,artist,song,album,e-book" translatesAutoresizingMaskIntoConstraints="NO" id="wPn-Uy-N98">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Es7-1M-IFb"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wPn-Uy-N98" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="AWV-O2-KSY"/>
+                            <constraint firstItem="7TC-9x-c12" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Jtq-ub-N6L"/>
+                            <constraint firstItem="7TC-9x-c12" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="M0L-vK-Q01"/>
+                            <constraint firstAttribute="trailing" secondItem="wPn-Uy-N98" secondAttribute="trailing" id="MdB-Nc-J0j"/>
+                            <constraint firstAttribute="trailing" secondItem="7TC-9x-c12" secondAttribute="trailing" id="esn-zL-A7Q"/>
+                            <constraint firstItem="wPn-Uy-N98" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="j3e-DK-ntE"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="7TC-9x-c12" secondAttribute="bottom" id="xao-ic-R9l"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="wPn-Uy-N98" id="vP0-1R-oeu"/>
+                        <outlet property="tableView" destination="7TC-9x-c12" id="qHl-ZS-Ttj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
