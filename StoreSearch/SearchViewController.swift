@@ -53,34 +53,19 @@ class SearchViewController: UIViewController {
         return url!
     }
     
-    func performStoreRequestWithURL(url: NSURL) -> String? {
-        println("performStoreRequestWithURL")
+    func parseJSON(data: NSData) -> [String: AnyObject]? {
         var error: NSError?
-        if let resultString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding, error: &error) {
-            return resultString
+        if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [String: AnyObject] {
+            return json
         } else if let error = error {
-            println("Download Error: \(error)")
+            println("JSON Error: \(error)")
         } else {
-            println("Unknown Download Error")
+            println("Unknown JSON Error")
         }
         return nil
     }
     
-    func parseJSON(jsonString: String) -> [String: AnyObject]? {
-        if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
-            var error: NSError?
-            if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [String: AnyObject] {
-                return json
-            } else if let error = error {
-                println("JSON Error: \(error)")
-            } else {
-                println("Unknown JSON Error")
-            }
-        }
-        return nil
-    }
-    
-    func showNewworkError() {
+    func showNetworkError() {
         let alert = UIAlertController(title: "Whoops...", message: "There was an error reading from the iTunes Store. Please try again.", preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
         alert.addAction(action)
@@ -232,35 +217,51 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        println("searchBarSearchButtonClicked")
-        searchBar.resignFirstResponder()
-        
-        isLoading = true
-        tableView.reloadData()
-        
-        searchResults = [SearchResult]()
-        hasSearched = true
-        
-        let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-        
-        dispatch_async(queue) {
+        if !searchBar.text.isEmpty {
+            searchBar.resignFirstResponder()
+            
+            isLoading = true
+            tableView.reloadData()
+            
+            searchResults = [SearchResult]()
+            hasSearched = true
+            
             let url = self.urlWithSearchText(searchBar.text)
             
-            if let jsonString = self.performStoreRequestWithURL(url) {
-                if let dictionary = self.parseJSON(jsonString) {
-                    self.searchResults = self.parseDictionary(dictionary)
-                    self.searchResults.sort(<)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.isLoading = false
-                        self.tableView.reloadData()
+            let session = NSURLSession.sharedSession()
+            
+            let dataTask = session.dataTaskWithURL(url, completionHandler: {
+                data, response, error in
+                
+                if let error = error {
+                    println("Failure! \(error)")
+                } else if let httpResponse = response as? NSHTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        if let dictionary = self.parseJSON(data) {
+                            println("On the main thread? " + (NSThread.currentThread().isMainThread ? "Yes" : "No"))
+                            
+                            self.searchResults = self.parseDictionary(dictionary)
+                            self.searchResults.sort(<)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.isLoading = false
+                                self.tableView.reloadData()
+                            }
+                            return
+                        }
+                    } else {
+                        println("Failure! \(response)")
                     }
-                    return
                 }
-            }
-            dispatch_async(dispatch_get_main_queue()) {
-                self.showNewworkError()
-            }
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
+                }
+            })
+            dataTask.resume()
         }
     }
 
