@@ -54,6 +54,15 @@ class SearchViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            let indexPath = sender as! NSIndexPath
+            let searchResult = searchResults[indexPath.row]
+            detailViewController.searchResult = searchResult
+        }
+    }
+    
     func urlWithSearchText(searchText: String, category: Int) -> NSURL {
         var entityName: String
         switch category {
@@ -64,7 +73,7 @@ class SearchViewController: UIViewController {
         }
         
         let escapedSearchText = searchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=20&entity=%@", escapedSearchText, entityName)
         let url = NSURL(string: urlString)
         return url!
     }
@@ -72,6 +81,7 @@ class SearchViewController: UIViewController {
     func parseJSON(data: NSData) -> [String: AnyObject]? {
         var error: NSError?
         if let json = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(0), error: &error) as? [String: AnyObject] {
+            println("\(json)")
             return json
         } else if let error = error {
             println("JSON Error: \(error)")
@@ -180,7 +190,7 @@ class SearchViewController: UIViewController {
         searchResult.kind = dictionary["kind"] as! String
         searchResult.currency = dictionary["currency"] as! String
         
-        if let price = dictionary["trackPrice"] as? Double {
+        if let price = dictionary["price"] as? Double {
             searchResult.price = price
         }
         if let genre = dictionary["primaryGenreName"] as? String {
@@ -201,7 +211,7 @@ class SearchViewController: UIViewController {
         searchResult.kind = dictionary["kind"] as! String
         searchResult.currency = dictionary["currency"] as! String
         
-        if let price = dictionary["trackPrice"] as? Double {
+        if let price = dictionary["price"] as? Double {
             searchResult.price = price
         }
         if let genres: AnyObject = dictionary["genres"] {
@@ -320,6 +330,7 @@ extension SearchViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        performSegueWithIdentifier("ShowDetail", sender: indexPath)
     }
 }
 
