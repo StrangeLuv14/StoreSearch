@@ -22,10 +22,10 @@ class DetailViewController: UIViewController {
         case Slide
         case Fade
     }
-    var dismissAnimationStyle = AnimationStyle.Fade
+    private var dismissAnimationStyle = AnimationStyle.Fade
     
     var searchResult: SearchResult!
-    var downloadTask: NSURLSessionDownloadTask?
+    private var downloadTask: NSURLSessionDownloadTask?
     
     deinit {
         println("deinit \(self)")

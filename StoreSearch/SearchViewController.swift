@@ -81,6 +81,7 @@ class SearchViewController: UIViewController {
         
         landscapeViewController = storyboard!.instantiateViewControllerWithIdentifier("LandscapeViewController") as? LandscapeViewController
         if let controller = landscapeViewController {
+            controller.searchResults = searchResults
             controller.view.frame = view.bounds
             controller.view.alpha = 0
             
@@ -127,7 +128,7 @@ class SearchViewController: UIViewController {
         }
         
         let escapedSearchText = searchBar.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=20&entity=%@", escapedSearchText, entityName)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapedSearchText, entityName)
         let url = NSURL(string: urlString)
         return url!
     }
