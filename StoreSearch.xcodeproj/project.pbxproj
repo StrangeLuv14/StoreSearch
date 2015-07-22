@@ -12,6 +12,7 @@
 		07019B131B5A38EF00B53022 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07019B111B5A38EF00B53022 /* Main.storyboard */; };
 		07019B151B5A38EF00B53022 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07019B141B5A38EF00B53022 /* Images.xcassets */; };
 		07019B241B5A38EF00B53022 /* StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07019B231B5A38EF00B53022 /* StoreSearchTests.swift */; };
+		074D8D481B5F979D00D1FC7B /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */; };
 		0799EF441B5D053B00E2F809 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0799EF431B5D053B00E2F809 /* LoadingCell.xib */; };
 		0799EF461B5D7BC400E2F809 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */; };
 		07CB1B791B5A4D7300F4E68F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CB1B781B5A4D7300F4E68F /* SearchResultCell.xib */; };
@@ -47,6 +48,7 @@
 		07019B1D1B5A38EF00B53022 /* StoreSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07019B221B5A38EF00B53022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07019B231B5A38EF00B53022 /* StoreSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchTests.swift; sourceTree = "<group>"; };
+		074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		0799EF431B5D053B00E2F809 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		07CB1B781B5A4D7300F4E68F /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				07D9DF7B1B5EC85B00BBE6E6 /* FadeOutAnimationController.swift */,
+				074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */,
 				07019B0D1B5A38EF00B53022 /* AppDelegate.swift */,
 				07019B0F1B5A38EF00B53022 /* SearchViewController.swift */,
 				0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */,
@@ -255,6 +258,7 @@
 				07D9DF7C1B5EC85B00BBE6E6 /* FadeOutAnimationController.swift in Sources */,
 				07F073A21B5A4668001A1D48 /* SearchResult.swift in Sources */,
 				07CB1B7B1B5A50BB00F4E68F /* SearchResultCell.swift in Sources */,
+				074D8D481B5F979D00D1FC7B /* UIImage+Resize.swift in Sources */,
 				07D9DF761B5E7F6600BBE6E6 /* BounceAnimationController.swift in Sources */,
 				07D9DF7A1B5E933800BBE6E6 /* LandscapeViewController.swift in Sources */,
 				07D9DF711B5E799A00BBE6E6 /* DetailViewController.swift in Sources */,

@@ -19,7 +19,7 @@ extension UIImageView {
                     if let image = UIImage(data: data) {
                         dispatch_async(dispatch_get_main_queue()) {
                             if let strongSelf = self {
-                                strongSelf.image = image
+                                strongSelf.image = image.resizedImageWithBounds(CGSize(width: 60, height: 60))
                             }
                         }
                     }
