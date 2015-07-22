@@ -23,7 +23,7 @@ class LandscapeViewController: UIViewController {
         scrollView.contentOffset = CGPoint(x: scrollView.bounds.size.width * CGFloat(sender.currentPage), y: 0)
     }
     
-    var searchResults = [SearchResult]()
+    var search: Search!
     
     private var firstTime = true
     private var downloadTasks = [NSURLSessionDownloadTask]()
@@ -73,7 +73,7 @@ class LandscapeViewController: UIViewController {
         
         if firstTime {
             firstTime = false
-            tileButtons(searchResults)
+            tileButtons(search.searchResults)
         }
     }
     

@@ -13,6 +13,7 @@
 		07019B151B5A38EF00B53022 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07019B141B5A38EF00B53022 /* Images.xcassets */; };
 		07019B241B5A38EF00B53022 /* StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07019B231B5A38EF00B53022 /* StoreSearchTests.swift */; };
 		074D8D481B5F979D00D1FC7B /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */; };
+		074D8D4A1B5F9EB600D1FC7B /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074D8D491B5F9EB600D1FC7B /* Search.swift */; };
 		0799EF441B5D053B00E2F809 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0799EF431B5D053B00E2F809 /* LoadingCell.xib */; };
 		0799EF461B5D7BC400E2F809 /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */; };
 		07CB1B791B5A4D7300F4E68F /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CB1B781B5A4D7300F4E68F /* SearchResultCell.xib */; };
@@ -49,6 +50,7 @@
 		07019B221B5A38EF00B53022 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07019B231B5A38EF00B53022 /* StoreSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchTests.swift; sourceTree = "<group>"; };
 		074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		074D8D491B5F9EB600D1FC7B /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		0799EF431B5D053B00E2F809 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		07CB1B781B5A4D7300F4E68F /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				074D8D471B5F979D00D1FC7B /* UIImage+Resize.swift */,
 				07019B0D1B5A38EF00B53022 /* AppDelegate.swift */,
 				07019B0F1B5A38EF00B53022 /* SearchViewController.swift */,
+				074D8D491B5F9EB600D1FC7B /* Search.swift */,
 				0799EF451B5D7BC400E2F809 /* UIImageView+DownloadImage.swift */,
 				07D9DF6F1B5E799A00BBE6E6 /* DetailViewController.swift */,
 				07D9DF791B5E933800BBE6E6 /* LandscapeViewController.swift */,
@@ -266,6 +269,7 @@
 				07D9DF741B5E79F600BBE6E6 /* GradientView.swift in Sources */,
 				0799EF461B5D7BC400E2F809 /* UIImageView+DownloadImage.swift in Sources */,
 				07D9DF781B5E895200BBE6E6 /* SlideOutAnimationController.swift in Sources */,
+				074D8D4A1B5F9EB600D1FC7B /* Search.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
