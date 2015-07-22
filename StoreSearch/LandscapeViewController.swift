@@ -26,9 +26,14 @@ class LandscapeViewController: UIViewController {
     var searchResults = [SearchResult]()
     
     private var firstTime = true
+    private var downloadTasks = [NSURLSessionDownloadTask]()
     
     deinit {
         println("deinit \(self)")
+        
+        for task in downloadTasks {
+            task.cancel()
+        }
     }
 
     override func viewDidLoad() {
@@ -113,9 +118,9 @@ class LandscapeViewController: UIViewController {
         var x = marginX
         
         for (index, searchResult) in enumerate(searchResults) {
-            let button = UIButton.buttonWithType(.System) as! UIButton
-            button.backgroundColor = UIColor.whiteColor()
-            button.setTitle("\(index)", forState: .Normal)
+            let button = UIButton.buttonWithType(.Custom) as! UIButton
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
+            downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
             
             button.frame = CGRect(
                 x: x + paddingHorz,
@@ -151,7 +156,28 @@ class LandscapeViewController: UIViewController {
         
         println("Number of pages: \(numPages)")
         
-        // TODO: more to come here
+    }
+    
+    private func downloadImageForSearchResult(searchResult: SearchResult, andPlaceOnButton button: UIButton) {
+        if let url = NSURL(string: searchResult.artworkURL60) {
+            let session = NSURLSession.sharedSession()
+            let downloadTask = session.downloadTaskWithURL(url, completionHandler: {
+                [weak button] url, response, error in
+                if error == nil && url != nil {
+                    if let data = NSData(contentsOfURL: url) {
+                        if let image = UIImage(data: data) {
+                            dispatch_async(dispatch_get_main_queue()){
+                                if let button = button {
+                                    button.setImage(image, forState: .Normal)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            downloadTask.resume()
+            downloadTasks.append(downloadTask)
+        }
     }
     
 
